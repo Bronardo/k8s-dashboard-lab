@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K8s Health Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <header class="mb-8 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl shadow-black/20 backdrop-blur">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] text-sky-400">Cluster Monitoring</p>
+            <h1 class="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">K8s Health Dashboard</h1>
+            <p class="mt-2 text-sm text-slate-400">Live mock data feed for workloads when Kubernetes is offline.</p>
+          </div>
+          <div class="space-y-1 text-sm text-slate-300">
+            <p id="source-badge" class="inline-block rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 font-medium">Source: -</p>
+            <p id="generated-at" class="text-slate-400">Updated: -</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <article class="rounded-xl border border-slate-800 bg-slate-900/70 p-4">
+          <p class="text-xs uppercase tracking-wide text-slate-400">Total Pods</p>
+          <p id="total-pods" class="mt-2 text-3xl font-semibold text-slate-100">0</p>
+        </article>
+        <article class="rounded-xl border border-emerald-700/40 bg-emerald-950/20 p-4">
+          <p class="text-xs uppercase tracking-wide text-emerald-300">Healthy</p>
+          <p id="healthy-pods" class="mt-2 text-3xl font-semibold text-emerald-200">0</p>
+        </article>
+        <article class="rounded-xl border border-rose-700/40 bg-rose-950/20 p-4">
+          <p class="text-xs uppercase tracking-wide text-rose-300">Unhealthy</p>
+          <p id="unhealthy-pods" class="mt-2 text-3xl font-semibold text-rose-200">0</p>
+        </article>
+      </section>
+
+      <section class="rounded-2xl border border-slate-800 bg-slate-900/70 shadow-xl shadow-black/20">
+        <div class="flex items-center justify-between border-b border-slate-800 px-5 py-4">
+          <h2 class="text-lg font-semibold text-slate-100">Workloads</h2>
+          <span class="text-xs text-slate-400">Auto-refresh: 15s</span>
+        </div>
+
+        <div id="error-box" class="m-4 hidden rounded-lg border border-rose-700/40 bg-rose-900/20 px-4 py-3 text-sm text-rose-200"></div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left text-sm">
+            <thead class="bg-slate-900/80 text-slate-400">
+              <tr>
+                <th class="px-4 py-3 font-medium">Pod</th>
+                <th class="px-4 py-3 font-medium">Status</th>
+                <th class="px-4 py-3 font-medium">Restarts</th>
+                <th class="px-4 py-3 font-medium">Age</th>
+              </tr>
+            </thead>
+            <tbody id="pods-table-body">
+              <tr>
+                <td colspan="4" class="px-4 py-6 text-center text-slate-500">Loading data...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <script src="./assets/js/state.js"></script>
+    <script src="./assets/js/api.js"></script>
+    <script src="./assets/js/dashboard.js"></script>
+  </body>
+</html>
